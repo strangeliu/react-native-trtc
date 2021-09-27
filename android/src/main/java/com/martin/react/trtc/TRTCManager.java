@@ -62,7 +62,12 @@ public class TRTCManager {
             if (options.hasKey("enableAdjustRes")) {
                 encParam.enableAdjustRes = options.getBoolean("enableAdjustRes");
             }
-           this.mTRTCCloud.setVideoEncoderParam(encParam);
+            this.mTRTCCloud.setVideoEncoderParam(encParam);
+
+            TRTCCloudDef.TRTCNetworkQosParam netParam = new TRTCCloudDef.TRTCNetworkQosParam();
+            netParam.preference = TRTCCloudDef.TRTC_VIDEO_QOS_PREFERENCE_SMOOTH;
+
+            this.mTRTCCloud.setNetworkQosParam(netParam);
 
         }catch (Exception e) {
             throw new RuntimeException("create trtc cloud failed\n" + Log.getStackTraceString(e));
